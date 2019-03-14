@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 export default {
   name: "login",
@@ -28,7 +28,9 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => alert("Well done! You are now connected!"))
+        .then(user => {
+          this.$router.replace("home");
+        })
         .catch(err => alert("Ops... " + err.message));
     }
   }
