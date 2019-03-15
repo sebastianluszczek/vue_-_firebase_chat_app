@@ -15,6 +15,7 @@
 
 <script>
 import firebase from "firebase/app";
+import { uuid } from "vue-uuid";
 
 export default {
   name: "login",
@@ -35,6 +36,7 @@ export default {
 
           db.collection("users")
             .add({
+              uuid: uuid.v1(),
               name: this.name,
               email: this.email,
               created: Date.now(),

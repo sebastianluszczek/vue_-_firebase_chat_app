@@ -29,7 +29,21 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          this.$router.replace("home");
+          firebase
+            .firestore()
+            .collection("users")
+            .where("email", "==", user.user.email)
+            .get()
+            .then(user => {
+              firebase
+                .firestore()
+                .collection("users")
+                .doc(user.docs[0].id)
+                .update({
+                  isOnline: true
+                })
+                .then(() => this.$router.replace("home"));
+            });
         })
         .catch(err => alert("Ops... " + err.message));
     }

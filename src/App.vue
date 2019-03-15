@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+import "@/assets/main.scss";
+
+export default {
+  name: "app"
+};
+</script>
+
+
 <style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
