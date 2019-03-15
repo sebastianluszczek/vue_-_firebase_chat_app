@@ -29,14 +29,19 @@ export default {
   }
 
   .btn {
-    width: 160px;
+    width: 140px;
     height: 40px;
-    line-height: 40px;
-    color: #607d8b;
-    border: 1px solid;
-    background-color: #fff;
-    font-size: 1rem;
+    color: #fff;
+    background-color: #7b1fa2;
+    border: none;
+    box-shadow: none;
+    border-radius: 20px;
+    transition: 0.2s;
     text-transform: uppercase;
+
+    &:hover {
+      transform: scale(0.95);
+    }
   }
 }
 </style>

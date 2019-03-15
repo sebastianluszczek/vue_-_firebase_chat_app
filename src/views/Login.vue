@@ -27,25 +27,30 @@ export default {
     logIn() {
       firebase
         .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(user => {
-          firebase
-            .firestore()
-            .collection("users")
-            .where("email", "==", user.user.email)
-            .get()
+        .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(() => {
+          return firebase
+            .auth()
+            .signInWithEmailAndPassword(this.email, this.password)
             .then(user => {
               firebase
                 .firestore()
                 .collection("users")
-                .doc(user.docs[0].id)
-                .update({
-                  isOnline: true
-                })
-                .then(() => this.$router.replace("home"));
-            });
-        })
-        .catch(err => alert("Ops... " + err.message));
+                .where("email", "==", user.user.email)
+                .get()
+                .then(user => {
+                  firebase
+                    .firestore()
+                    .collection("users")
+                    .doc(user.docs[0].id)
+                    .update({
+                      isOnline: true
+                    })
+                    .then(() => this.$router.replace("home"));
+                });
+            })
+            .catch(err => alert("Ops... " + err.message));
+        });
     }
   }
 };
