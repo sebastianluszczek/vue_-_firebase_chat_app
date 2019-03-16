@@ -2,8 +2,8 @@
   <div class="home">
     <h1>Vue.js Chat App</h1>
     <div class="profile-info">
-      <p>Current User: {{currentUser.name}}</p>
-      <button @click="logOut" class="btn">LogOut</button>
+      <p>Hello {{currentUser.name}}!</p>
+      <button @click="logOut" class="btn chat">LogOut</button>
     </div>
     <div class="board">
       <ul class="usersList">
@@ -30,8 +30,11 @@
           >{{message.message}}</div>
         </div>
         <div class="inputArea">
-          <input type="text" placeholder="Message here..." v-model="message">
-          <button class="btn" @click="send">Send</button>
+          <div class="input-wrapper">
+            <i class="fas fa-comment"></i>
+            <input type="text" placeholder="Message here..." v-model="message">
+          </div>
+          <button class="btn chat" @click="send">Send</button>
         </div>
       </div>
     </div>
@@ -163,12 +166,21 @@ export default {
 <style lang="scss">
 .home {
   position: relative;
+  color: #fff;
+
+  h1 {
+    border-bottom: 3px solid #00e676;
+    width: fit-content;
+    padding-bottom: 10px;
+    margin-left: 15%;
+  }
   .board {
     display: grid;
     grid-template-columns: 200px 500px;
     width: 700px;
     margin: 50px auto;
     height: 500px;
+    background-color: #000000cc;
   }
   .usersList {
     overflow: auto;
@@ -178,7 +190,6 @@ export default {
     padding: 30px 4px;
     height: 100%;
     margin: 0;
-    background-color: #ba68c8;
 
     li {
       text-align: left;
@@ -198,8 +209,9 @@ export default {
       }
 
       &.active {
-        background-color: #7b1fa2;
+        background-color: #00e676;
         border-radius: 5px;
+        color: #111;
       }
     }
   }
@@ -214,15 +226,31 @@ export default {
       bottom: 0;
       border-top: 1px solid #333;
       padding: 5px;
+      display: grid;
+      grid-template-columns: auto 140px;
+      justify-items: center;
 
-      input {
-        height: 30px;
-        width: 60%;
-        border-radius: 15px;
-        box-shadow: none;
-        border: 1px solid #555;
-        padding: 0 10px;
-        margin-right: 30px;
+      .input-wrapper {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 30px auto;
+        margin: 0 auto;
+        border-bottom: 1px solid #00e676;
+        margin-bottom: 4px;
+
+        .fas {
+          align-self: center;
+          font-size: 18px;
+          color: #fff;
+        }
+        input {
+          align-self: center;
+          padding: 5px 10px;
+          width: 100%;
+          border: none;
+          box-shadow: none;
+          background-color: transparent;
+        }
       }
     }
     .messagesArea {
@@ -248,20 +276,21 @@ export default {
         text-align: right;
         position: relative;
         align-self: flex-end;
-        background-color: #f3e5f5;
+        background-color: #00e676;
+        color: #000;
       }
     }
 
     .listener {
       position: absolute;
       width: 100%;
-      background-color: #7b1fa2;
       height: 40px;
       color: #fff;
       text-align: left;
       font-weight: bold;
       padding: 5px 20px;
       font-size: 20px;
+      border-bottom: 2px solid #00e676;
 
       p {
         margin: 4px;
@@ -279,6 +308,11 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+  }
+
+  .btn.chat {
+    width: 120px;
+    font-size: 18px;
   }
 }
 </style>

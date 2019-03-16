@@ -2,9 +2,19 @@
   <div class="login">
     <div class="container">
       <h3>Register</h3>
-      <input type="text" placeholder="Name" v-model="name">
-      <input type="text" placeholder="Email" v-model="email">
-      <input type="password" placeholder="Password" v-model="password">
+      <div class="input-wrapper">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Name" v-model="name">
+      </div>
+      <div class="input-wrapper">
+        <i class="fas fa-envelope"></i>
+        <input type="text" placeholder="Email" v-model="email">
+      </div>
+      <div class="input-wrapper">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Password" v-model="password">
+      </div>
+
       <button class="btn" @click="register">Register</button>
       <p>You have an account?
         <router-link :to="{name: 'login'}">Log in!</router-link>
@@ -57,17 +67,52 @@ export default {
 <style lang="scss">
 .login {
   .container {
-    width: 500px;
-    margin: 50px auto;
-    border: 1px solid #333;
+    position: relative;
+    top: 100px;
+    width: 400px;
+    margin: 0px auto;
+    padding: 20px;
+
+    h3 {
+      font-size: 36px;
+      text-align: left;
+      color: #fff;
+      padding: 10px 0;
+      border-bottom: 5px solid #00e676;
+      width: fit-content;
+      margin-bottom: 60px;
+    }
+
+    p {
+      margin-top: 10px;
+      color: #fff;
+      text-align: left;
+
+      a {
+        color: #00e676;
+      }
+    }
   }
-  input {
-    display: block;
-    padding: 5px 10px;
-    width: 90%;
-    margin: 10px auto;
-    border: 1px solid #333;
-    box-shadow: none;
+  .input-wrapper {
+    display: grid;
+    grid-template-columns: 30px auto;
+    margin: 0 auto;
+    border-bottom: 1px solid #00e676;
+    margin-bottom: 20px;
+
+    .fas {
+      align-self: center;
+      font-size: 18px;
+      color: #fff;
+    }
+    input {
+      align-self: center;
+      padding: 5px 10px;
+      width: 100%;
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+    }
   }
 
   p {

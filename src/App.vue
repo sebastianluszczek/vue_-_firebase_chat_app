@@ -22,26 +22,22 @@ export default {
   color: #2c3e50;
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+  position: relative;
 
-  h3 {
-    color: #607d8b;
-    font-size: 2rem;
-  }
-
-  .btn {
-    width: 140px;
-    height: 40px;
-    color: #fff;
-    background-color: #7b1fa2;
-    border: none;
-    box-shadow: none;
-    border-radius: 20px;
-    transition: 0.2s;
-    text-transform: uppercase;
-
-    &:hover {
-      transform: scale(0.95);
-    }
+  &::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("./assets/back.jpg");
+    filter: brightness(0.3);
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }
 </style>
